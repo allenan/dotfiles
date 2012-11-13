@@ -1,5 +1,6 @@
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/bin
 
 [ -n "$PS1" ] && source ~/.bash_profile
 
