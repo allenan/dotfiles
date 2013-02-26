@@ -25,6 +25,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Rails and development shortcuts
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias sk="bundle exec sidekiq"
+alias rollback="git clean -df & git checkout -- ."
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
