@@ -11,7 +11,6 @@ alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
-alias g="git"
 alias h="history"
 #alias j="jobs"
 alias v="vim"
@@ -19,12 +18,44 @@ alias v="vim"
 alias s="subl ."
 alias o="open"
 alias oo="open ."
-
+alias server="python -m SimpleHTTPServer"
 alias path='echo -e ${PATH//:/\\n}'
+
+# Git Shortcuts
+alias g="git"
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gb='git branch -a -v'
+alias gs='git status'
+alias gd='git diff'
+alias commit="git add -A && git commit -am $1"
+alias gpom="git push origin master"
+
+# gc      => git checkout master
+# gc bugs => git checkout bugs
+function gc {
+  if [ -z "$1" ]; then
+    git checkout master
+  else
+    git checkout $1
+  fi
+}
+
 
 # Rails and development shortcuts
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias sk="bundle exec sidekiq"
+alias ppub="rackup private_pub.ru -s thin -E production"
+alias fmdev="foreman s -f Procfile.dev"
+function deploy {
+  if [ -z "$1" ]; then
+    git push origin master && heroku maintenance:on && git push -f heroku master && heroku run rake db:migrate && heroku run rake refresh_system_data && heroku maintenance:off
+  else
+    git push origin $1 && heroku maintenance:on && git push -f heroku $1:master && heroku run rake db:migrate && heroku run rake refresh_system_data && heroku maintenance:off
+  fi
+}
+
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
