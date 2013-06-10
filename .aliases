@@ -46,6 +46,7 @@ function gc {
 # Rails and development shortcuts
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias sk="bundle exec sidekiq"
+
 alias ppub="rackup private_pub.ru -s thin -E production"
 alias fmdev="foreman s -f Procfile.dev"
 function deploy {
@@ -55,6 +56,9 @@ function deploy {
     git push origin $1 && heroku maintenance:on && git push -f heroku $1:master && heroku run rake db:migrate && heroku run rake refresh_system_data && heroku maintenance:off
   fi
 }
+
+
+alias rollback="git clean -df & git checkout -- ."
 
 
 # Detect which `ls` flavor is in use
