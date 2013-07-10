@@ -1,3 +1,5 @@
+" From Pathogen (https://github.com/tpope/vim-pathogen)
+execute pathogen#infect()
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -45,6 +47,8 @@ set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 " Highlight searches
 set hlsearch
+" Clear search highlights with esc
+" nnoremap <esc> :noh<return><esc>
 " Ignore case of searches
 set ignorecase
 " Highlight dynamically as pattern is typed
